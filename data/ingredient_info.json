@@ -1,0 +1,10 @@
+{
+	"NewtEye" : {
+		"name": "A Newt's Eye",
+		"description": "One more herptile cyclops!",
+		"known_properties": ["VISCOUS"],
+		"unknown_properies": [],
+		"discovered": false,
+		"sprite": null
+	}
+}
