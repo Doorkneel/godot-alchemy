@@ -9,19 +9,37 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Control",
+"class": "AlchemyEquipment",
+"language": "GDScript",
+"path": "res://scripts/AlchemyEquipment.gd"
+}, {
+"base": "Control",
+"class": "DragDrop",
+"language": "GDScript",
+"path": "res://scripts/DragDrop.gd"
+}, {
 "base": "",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://git_api.gdns"
+}, {
+"base": "CenterContainer",
+"class": "ItemSlot",
+"language": "GDScript",
+"path": "res://scripts/ItemSlot.gd"
 } ]
 _global_script_class_icons={
-"GitAPI": ""
+"AlchemyEquipment": "",
+"DragDrop": "",
+"GitAPI": "",
+"ItemSlot": ""
 }
 
 [application]
 
 config/name="alchemy_game"
-run/main_scene="res://scenes/AlchemyEquipment.tscn"
+run/main_scene="res://scenes/DragDrop.tscn"
 
 [gdnative]
 

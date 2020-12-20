@@ -1,19 +1,19 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/DragDrop.gd" type="Script" id=1]
-[ext_resource path="res://scenes/Item.tscn" type="PackedScene" id=2]
+[ext_resource path="res://sprites/gui_test/GUI/emeralds_icon.png" type="Texture" id=2]
 [ext_resource path="res://scenes/ItemSlot.tscn" type="PackedScene" id=3]
-[ext_resource path="res://audio/clink.wav" type="AudioStream" id=4]
+[ext_resource path="res://sprites/gui_test/GUI/bombs_icon.png" type="Texture" id=4]
 [ext_resource path="res://sprites/gui_test/GUI/background1.png" type="Texture" id=5]
 
 [node name="InputGrid" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.5993
+margin_left = 7.16284
 margin_top = 4.65849
-margin_right = -771.401
+margin_right = -768.837
 margin_bottom = 84.6586
-rect_scale = Vector2( 0.862352, 0.879412 )
+rect_scale = Vector2( 0.8, 0.8 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -29,29 +29,47 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Slot1" parent="." instance=ExtResource( 3 )]
+[node name="ItemSlot1" parent="." instance=ExtResource( 3 )]
 margin_left = 30.0
 margin_top = 30.0
 margin_right = 0.0
 margin_bottom = 0.0
 item = "NewtEye"
 
-[node name="Draggable" parent="Slot1" instance=ExtResource( 2 )]
+[node name="Item1" type="TextureButton" parent="ItemSlot1" groups=[
+"draggable",
+]]
+margin_left = 54.0
+margin_top = 54.0
+margin_right = 134.0
+margin_bottom = 134.0
+texture_normal = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Slot2" parent="." instance=ExtResource( 3 )]
+[node name="ItemSlot2" parent="." instance=ExtResource( 3 )]
 margin_left = 30.0
 margin_top = 248.0
 margin_right = 0.0
 margin_bottom = 0.0
 item = "DogNose"
 
-[node name="Slot3" parent="." instance=ExtResource( 3 )]
+[node name="ItemSlot3" parent="." instance=ExtResource( 3 )]
 margin_left = 30.0
 margin_top = 466.0
 margin_right = 0.0
 margin_bottom = 0.0
 item = "TreeBark"
 
-[node name="Sound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
-volume_db = -22.0
+[node name="Item2" type="TextureButton" parent="ItemSlot3" groups=[
+"draggable",
+]]
+margin_left = 54.0
+margin_top = 54.0
+margin_right = 134.0
+margin_bottom = 134.0
+texture_normal = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

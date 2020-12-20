@@ -4,9 +4,7 @@
 [ext_resource path="res://scenes/DragDrop.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/AlchemyEquipment.gd" type="Script" id=3]
 
-[node name="Equipment" type="Control"]
-margin_bottom = 40.0
-script = ExtResource( 3 )
+[node name="Control" type="Control"]
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -14,13 +12,24 @@ __meta__ = {
 [node name="InputGrid" parent="." instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 104.794
-margin_top = 105.833
-margin_right = 104.794
-margin_bottom = 145.833
-rect_scale = Vector2( 0.2, 0.2 )
+margin_left = 36.8278
+margin_top = 26.2849
+margin_right = 36.8278
+margin_bottom = 26.2849
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Equipment" type="Control" parent="."]
+margin_left = 218.0
+margin_top = 12.0
+margin_right = 218.0
+margin_bottom = 12.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Equipment"]
 margin_left = 285.183
 margin_top = 90.7143
 margin_right = 785.183
@@ -29,3 +38,12 @@ texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="InputGrid" parent="Equipment" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 104.633
+margin_top = 154.043
+margin_right = 104.633
+margin_bottom = 154.043
+rect_scale = Vector2( 0.5, 0.5 )
