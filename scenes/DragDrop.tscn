@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/DragDrop.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Item.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/ItemSlot.tscn" type="PackedScene" id=3]
+[ext_resource path="res://audio/clink.wav" type="AudioStream" id=4]
+[ext_resource path="res://sprites/gui_test/GUI/background1.png" type="Texture" id=5]
+
+[node name="InputGrid" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.5993
+margin_top = 4.65849
+margin_right = -771.401
+margin_bottom = 84.6586
+rect_scale = Vector2( 0.862352, 0.879412 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 238.0
+margin_bottom = 680.0
+rect_min_size = Vector2( 248, 680 )
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slot1" parent="." instance=ExtResource( 3 )]
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 0.0
+margin_bottom = 0.0
+item = "NewtEye"
+
+[node name="Draggable" parent="Slot1" instance=ExtResource( 2 )]
+
+[node name="Slot2" parent="." instance=ExtResource( 3 )]
+margin_left = 30.0
+margin_top = 248.0
+margin_right = 0.0
+margin_bottom = 0.0
+item = "DogNose"
+
+[node name="Slot3" parent="." instance=ExtResource( 3 )]
+margin_left = 30.0
+margin_top = 466.0
+margin_right = 0.0
+margin_bottom = 0.0
+item = "TreeBark"
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -22.0

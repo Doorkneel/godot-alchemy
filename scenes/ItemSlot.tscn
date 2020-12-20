@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/ItemSlot.gd" type="Script" id=1]
+
+[node name="Slot2" type="CenterContainer" groups=[
+"droppable",
+]]
+margin_left = 382.836
+margin_top = 157.891
+margin_right = 570.836
+margin_bottom = 345.891
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 188.0
+margin_bottom = 188.0
+rect_min_size = Vector2( 188, 188 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+color = Color( 0.5, 0.5, 0.5, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
