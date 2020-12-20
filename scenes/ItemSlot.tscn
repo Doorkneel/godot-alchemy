@@ -2,7 +2,9 @@
 
 [ext_resource path="res://scripts/ItemSlot.gd" type="Script" id=1]
 
-[node name="Slot2" type="CenterContainer"]
+[node name="Slot2" type="CenterContainer" groups=[
+"droppable",
+]]
 margin_left = 382.836
 margin_top = 157.891
 margin_right = 570.836

@@ -22,7 +22,6 @@ _global_script_class_icons={
 
 config/name="alchemy_game"
 run/main_scene="res://scenes/AlchemyEquipment.tscn"
-config/icon="res://icon.png"
 
 [gdnative]
 

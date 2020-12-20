@@ -27,12 +27,12 @@ func update_drag(draggable: BaseButton):
 		- draggable.get_rect().size / 2)
 
 	var min_distance = snap_distance
-	for child in get_children():
-		if child is CenterContainer:
-			var dist = (draggable.rect_global_position - child.rect_global_position).length()
+	for droppable in get_tree().get_nodes_in_group("droppable"):
+		if droppable is CenterContainer:
+			var dist = (draggable.rect_global_position - droppable.rect_global_position).length()
 			if dist < min_distance:
 				min_distance = dist
-				update_destination(child)
+				update_destination(droppable)
 
 func update_destination(new_dest):
 	if destination: destination.unhighlight()
@@ -43,4 +43,5 @@ func stop_drag(draggable: BaseButton):
 	dragging = false
 	draggable.get_parent().remove_child(draggable)
 	destination.add_child(draggable)
+	$Sound.play()
 	update_destination(null)

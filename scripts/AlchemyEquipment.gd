@@ -1,38 +1,73 @@
 extends Control
 
-var ingredient_info
-var recipes
+enum AlchProps {
+	FLAMMABLE,
+	SOLUBLE_IN_WATER,
+	SOLUBLE_IN_ALCOHOL,
+	EXPLOSIVE,
+	VISCOUS
+}
 
-func _ready():
-	
-	var ing_file = File.new()
-	ing_file.open("res://data/ingredient_info.json", File.READ)
-	ingredient_info = parse_json(ing_file.get_as_text())
-	ing_file.close()
-	
-	var recipe_file = File.new()
-	recipe_file.open("res://data/recipes.json", File.READ)
-	recipes = parse_json(recipe_file.get_as_text())
-	recipe_file.close()
+enum Equipment {
+	BURNER,
+	PETRI_DISH,
+	DISTILLER,
+	PESTLE_MORTAR
+}
 
-func check_recipe(ingredients, equipment):
+var ingredient_info := {
+	"NewtEye": {
+		"name": "A Newt's Eye",
+		"description": "One more herptile cyclops!",
+		"known_properties": ["VISCOUS"],
+		"unknown_properies": [],
+		"discovered": false,
+		"sprite": null
+	}
+}
+
+var recipes := [
+	{
+		"results": ["LovePotion"],
+		"ingredients": ["NewtEye"],
+		"ingredient_props": ["SOLUBLE_IN_ALCOHOL"],
+		"equipment": "DISTILLER"
+	},
+	{
+		"results": ["LovePotion"],
+		"ingredients": ["DogNose"],
+		"ingredient_props": ["SOLUBLE_IN_ALCOHOL"],
+		"equipment": "DISTILLER"
+	},
+	{
+		"results": ["Ash", "Disappoinment"],
+		"ingredients": [],
+		"ingredient_props": ["FLAMMABLE"],
+		"equipment": "BURNER"
+	}
+]
+
+func check_recipe(ingredients: Array, equipment: String):
 	for recipe in recipes:
-		# simplest continue cases
+		# simple exit cases
 		if recipe["equipment"] != equipment: continue
+		
 		var recipe_ings = recipe["ingredients"]
 		var recipe_props = recipe["ingredient_props"]
 		if (recipe_ings + recipe_props).size() != ingredients.size(): continue
 		
-		# things are simple without properties
-#		if recipe_props.size() == 0:
-#			ingredients.sort()
-#			recipe_ings.sort()
-#			if ingredients == recipe_ings: return recipe["results"]
-#			else: continue
+		for ingredient in recipe_ings:
+			if not ingredient in ingredients: continue
 		
-		# for each given ingredient, obtain list of things (ingredients / props)
-		# in the recipe specification which are matched by that ingredient
-		var matches: Dictionary = {}
+		# things are simple without properties
+		if recipe_props.size() == 0:
+			ingredients.sort()
+			recipe_ings.sort()
+			if ingredients == recipe_ings: return recipe["results"]
+			else: continue
+		
+		# for each recipe property, obtain list of input ingredients matching it
+		var matches := []
 		var immediate_continue := false
 
 		for ingredient in ingredients:
@@ -46,9 +81,32 @@ func check_recipe(ingredients, equipment):
 			
 			immediate_continue |= matches[ingredient].size() == 0
 		
-		# continue if any ingredient matches nothing in recipe spec
+		for prop in recipe_props:
+			var prop_matches := []
+			for ingredient in ingredients:
+				if prop in ingredient_info[ingredient]["known_properties"] or \
+						prop in ingredient_info[ingredient]["unknown_properies"]:
+					prop_matches.append(ingredient)
+			immediate_continue = immediate_continue or prop_matches.size() == 0
+			matches.append(prop_matches)
+		
+		# continue if any property is matched by no ingredients
 		if immediate_continue: continue
 		
-		# finally check whether recipe specification can be divided among the
-		# ingredient matches
-		pass
+		# remove one of each ingredient in recipe from copy of input ingredients
+		var input_ings = ingredients.duplicate()
+		for ingredient in recipe_ings:
+			input_ings.remove(input_ings.find(ingredient)) # we know ingredient in input_ings
+		
+		# permute remaining input_ings and check each permutation against matches
+		if check_all_permutations(input_ings, matches, input_ings.size()):
+			return recipe["results"]
+	return []
+
+func check_all_permutations(input_ings: Array, matches: Array, k: int):
+	pass
+
+func check_permutation(input_ings: Array, matches: Array):
+	for i in input_ings.size():
+		if not input_ings[i] in matches[i]: return false
+	return true
