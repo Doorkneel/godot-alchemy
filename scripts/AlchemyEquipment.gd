@@ -4,7 +4,7 @@ var ingredient_info
 var recipes
 
 func _ready():
-	
+	# load recipes and ingredient info from JSON files
 	var ing_file = File.new()
 	ing_file.open("res://data/ingredient_info.json", File.READ)
 	ingredient_info = parse_json(ing_file.get_as_text())
@@ -72,9 +72,20 @@ func check_recipe(ingredients: Array, equipment: String):
 	return []
 
 func check_all_permutations(input_ings: Array, matches: Array, k: int):
-	pass
+	if k == 1: return check_permutation(input_ings, matches)
+	else:
+		return check_all_permutations(input_ings, matches, k - 1)
+		for i in k - 1:
+			if k % 2 == 0: swap(input_ings, i, k - 1)
+			else: swap(input_ings, 0, k - 1)
+			return check_all_permutations(input_ings, matches, k - 1)
 
 func check_permutation(input_ings: Array, matches: Array):
 	for i in input_ings.size():
 		if not input_ings[i] in matches[i]: return false
 	return true
+
+func swap(arr: Array, i: int, j: int):
+	var tmp = arr[i]
+	arr[i] = arr[j]
+	arr[j] = tmp
