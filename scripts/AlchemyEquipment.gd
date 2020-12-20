@@ -1,51 +1,19 @@
 extends Control
 
-enum AlchProps {
-	FLAMMABLE,
-	SOLUBLE_IN_WATER,
-	SOLUBLE_IN_ALCOHOL,
-	EXPLOSIVE,
-	VISCOUS
-}
+var ingredient_info
+var recipes
 
-enum Equipment {
-	BURNER,
-	PETRI_DISH,
-	DISTILLER,
-	PESTLE_MORTAR
-}
-
-var ingredient_info := {
-	"NewtEye": {
-		"name": "A Newt's Eye",
-		"description": "One more herptile cyclops!",
-		"known_properties": ["VISCOUS"],
-		"unknown_properies": [],
-		"discovered": false,
-		"sprite": null
-	}
-}
-
-var recipes := [
-	{
-		"results": ["LovePotion"],
-		"ingredients": ["NewtEye"],
-		"ingredient_props": ["SOLUBLE_IN_ALCOHOL"],
-		"equipment": "DISTILLER"
-	},
-	{
-		"results": ["LovePotion"],
-		"ingredients": ["DogNose"],
-		"ingredient_props": ["SOLUBLE_IN_ALCOHOL"],
-		"equipment": "DISTILLER"
-	},
-	{
-		"results": ["Ash", "Disappoinment"],
-		"ingredients": [],
-		"ingredient_props": ["FLAMMABLE"],
-		"equipment": "BURNER"
-	}
-]
+func _ready():
+	
+	var ing_file = File.new()
+	ing_file.open("res://data/ingredient_info.json", File.READ)
+	ingredient_info = parse_json(ing_file.get_as_text())
+	ing_file.close()
+	
+	var recipe_file = File.new()
+	recipe_file.open("res://data/recipes.json", File.READ)
+	recipes = parse_json(recipe_file.get_as_text())
+	recipe_file.close()
 
 func check_recipe(ingredients: Array, equipment: String):
 	for recipe in recipes:
