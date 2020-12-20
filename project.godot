@@ -27,10 +27,6 @@ run/main_scene="res://scenes/DragDrop.tscn"
 
 singletons=[ "res://git_api.gdnlib" ]
 
-[gdnative]
-
-singletons=[ "res://git_api.gdnlib" ]
-
 [rendering]
 
 environment/default_environment="res://default_env.tres"
