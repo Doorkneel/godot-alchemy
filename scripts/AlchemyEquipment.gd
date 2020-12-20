@@ -17,6 +17,8 @@ func _ready():
 	recipe_file.open("res://data/recipes.json", File.READ)
 	recipes = parse_json(recipe_file.get_as_text())
 	recipe_file.close()
+	
+	print(check_recipe(["Ash", "NewtEye"], "DISTILLER"))
 
 func check_recipe(ingredients: Array, equipment: String):
 	for recipe in recipes:

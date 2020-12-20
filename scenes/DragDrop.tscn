@@ -9,9 +9,9 @@
 [node name="InputGrid" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.5993
+margin_left = -9.65509
 margin_top = 4.65849
-margin_right = -771.401
+margin_right = -785.655
 margin_bottom = 84.6586
 rect_scale = Vector2( 0.862352, 0.879412 )
 script = ExtResource( 1 )

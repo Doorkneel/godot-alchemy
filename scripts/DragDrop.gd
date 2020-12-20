@@ -24,7 +24,7 @@ func start_drag(draggable: BaseButton):
 
 func update_drag(draggable: BaseButton):
 	draggable.set_global_position(draggable.get_global_mouse_position() 
-		- draggable.get_rect().size / 2)
+		- self.rect_scale * draggable.get_rect().size / 2)
 
 	var min_distance = snap_distance
 	for droppable in get_tree().get_nodes_in_group("droppable"):
