@@ -1,5 +1,8 @@
 extends Control
 
+# Debug flag which checks all 
+export var run_checker: bool
+
 var ingredient_info
 var recipes
 
@@ -24,8 +27,10 @@ func check_recipe(ingredients: Array, equipment: String):
 		var recipe_props = recipe["ingredient_props"]
 		if (recipe_ings + recipe_props).size() != ingredients.size(): continue
 		
+		var can_cont := false
 		for ingredient in recipe_ings:
-			if not ingredient in ingredients: continue
+			can_cont = can_cont or not ingredient in ingredients
+		if can_cont: continue
 		
 		# things are simple without properties
 		if recipe_props.size() == 0:
@@ -36,18 +41,7 @@ func check_recipe(ingredients: Array, equipment: String):
 		
 		# for each recipe property, obtain list of input ingredients matching it
 		var matches := []
-		var immediate_continue := false
-
-		for ingredient in ingredients:
-			matches[ingredient] = []
-			if ingredient is recipe_ings: matches[ingredient].append(ingredient)
-			
-			var ing_props = ingredient_info[ingredient]["known_properties"] + \
-				ingredient_info[ingredient]["unknown_properies"]
-			for prop in recipe_props:
-				if prop in ing_props: matches[ingredient].append(prop)
-			
-			immediate_continue |= matches[ingredient].size() == 0
+		can_cont = false
 		
 		for prop in recipe_props:
 			var prop_matches := []
@@ -55,11 +49,11 @@ func check_recipe(ingredients: Array, equipment: String):
 				if prop in ingredient_info[ingredient]["known_properties"] or \
 						prop in ingredient_info[ingredient]["unknown_properies"]:
 					prop_matches.append(ingredient)
-			immediate_continue = immediate_continue or prop_matches.size() == 0
+			can_cont = can_cont or prop_matches.size() == 0
 			matches.append(prop_matches)
 		
 		# continue if any property is matched by no ingredients
-		if immediate_continue: continue
+		if can_cont: continue
 		
 		# remove one of each ingredient in recipe from copy of input ingredients
 		var input_ings = ingredients.duplicate()
@@ -72,7 +66,8 @@ func check_recipe(ingredients: Array, equipment: String):
 	return []
 
 func check_all_permutations(input_ings: Array, matches: Array, k: int):
-	if k == 1 and check_permutation(input_ings, matches): return true
+	if k == 1:
+		if check_permutation(input_ings, matches): return true
 	else:
 		if check_all_permutations(input_ings, matches, k - 1): return true
 		for i in k - 1:

@@ -1,8 +1,41 @@
 {
-	"NewtEye" : {
-		"name": "A Newt's Eye",
+	"NewtEye": {
+		"name": "Eye of Newt",
 		"description": "One more herptile cyclops!",
-		"known_properties": ["VISCOUS"],
+		"known_properties": ["VISCOUS", "SOLUBLE_IN_ALCOHOL"],
+		"unknown_properies": ["FLAMMABLE"],
+		"discovered": false,
+		"sprite": null
+	},
+	"Ash": {
+		"name": "Ash",
+		"description": "Ash",
+		"known_properties": ["SOLUBLE_IN_ALCOHOL"],
+		"unknown_properies": ["POWDER"],
+		"discovered": true,
+		"sprite": null
+		
+	},
+	"Disappoinment": {
+		"name": "Disappoinment",
+		"description": "Disappoinment",
+		"known_properties": [],
+		"unknown_properies": [],
+		"discovered": true,
+		"sprite": null
+	},
+	"DogNose": {
+		"name": "Dog Nose",
+		"description": "It's still moist.",
+		"known_properties": ["MOIST"],
+		"unknown_properies": [],
+		"discovered": true,
+		"sprite": null
+	},
+	"LovePotion": {
+		"name": "Love Potion",
+		"description": "Make the maidens swoon.",
+		"known_properties": ["SOLVENT"],
 		"unknown_properies": [],
 		"discovered": false,
 		"sprite": null
