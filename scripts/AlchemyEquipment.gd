@@ -72,13 +72,14 @@ func check_recipe(ingredients: Array, equipment: String):
 	return []
 
 func check_all_permutations(input_ings: Array, matches: Array, k: int):
-	if k == 1: return check_permutation(input_ings, matches)
+	if k == 1 and check_permutation(input_ings, matches): return true
 	else:
-		return check_all_permutations(input_ings, matches, k - 1)
+		if check_all_permutations(input_ings, matches, k - 1): return true
 		for i in k - 1:
 			if k % 2 == 0: swap(input_ings, i, k - 1)
 			else: swap(input_ings, 0, k - 1)
-			return check_all_permutations(input_ings, matches, k - 1)
+			if check_all_permutations(input_ings, matches, k - 1): return true
+	return false
 
 func check_permutation(input_ings: Array, matches: Array):
 	for i in input_ings.size():
