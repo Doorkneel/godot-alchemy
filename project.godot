@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="alchemy_game"
-run/main_scene="res://scenes/DragDrop.tscn"
+run/main_scene="res://scenes/AlchemyEquipment.tscn"
 
 [gdnative]
 
