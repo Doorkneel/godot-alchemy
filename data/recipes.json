@@ -1,0 +1,20 @@
+[
+	{
+		"results": ["LovePotion"],
+		"ingredients": ["NewtEye"],
+		"ingredient_props": ["SOLUBLE_IN_ALCOHOL"],
+		"equipment": "DISTILLER"
+	},
+	{
+		"results": ["LovePotion"],
+		"ingredients": ["DogNose"],
+		"ingredient_props": ["SOLUBLE_IN_ALCOHOL"],
+		"equipment": "DISTILLER"
+	},
+	{
+		"results": ["Ash", "Disappoinment"],
+		"ingredients": [],
+		"ingredient_props": ["FLAMMABLE"],
+		"equipment": "BURNER"
+	}
+]

@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/ItemSlot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/DragDrop.gd" type="Script" id=2]
+[ext_resource path="res://scenes/Item.tscn" type="PackedScene" id=3]
+[ext_resource path="res://audio/clink.wav" type="AudioStream" id=4]
+
+[node name="GridContainer" type="GridContainer"]
+margin_left = 21.8173
+margin_top = 18.4842
+margin_right = 401.817
+margin_bottom = 398.484
+columns = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slot2" parent="." instance=ExtResource( 1 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 188.0
+margin_bottom = 188.0
+
+[node name="Draggable" parent="Slot2" instance=ExtResource( 3 )]
+
+[node name="Slot3" parent="." instance=ExtResource( 1 )]
+margin_left = 192.0
+margin_top = 0.0
+margin_right = 380.0
+margin_bottom = 188.0
+
+[node name="Slot5" parent="." instance=ExtResource( 1 )]
+margin_left = 0.0
+margin_top = 192.0
+margin_right = 188.0
+margin_bottom = 380.0
+
+[node name="Slot4" parent="." instance=ExtResource( 1 )]
+margin_left = 192.0
+margin_top = 192.0
+margin_right = 380.0
+margin_bottom = 380.0
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -17.261
